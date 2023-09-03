@@ -1,4 +1,5 @@
 
+#pragma once
 #include "mosquitto.h"
 #include <iostream>
 

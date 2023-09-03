@@ -14,7 +14,9 @@ struct client {
         json json_obj = json::parse(json_string);
 
         client result = client();
-        result.id = json_obj['id'].get<std::string>();
+        if (json_obj.contains("id")) {
+            json_obj.at("id").get_to(result.id);
+        }
         return result;
     }
 };

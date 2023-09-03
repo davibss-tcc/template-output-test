@@ -14,8 +14,12 @@ struct joint_info {
         json json_obj = json::parse(json_string);
 
         joint_info result = joint_info();
-        result.minimum = json_obj['minimum'].get<int>();
-        result.maximum = json_obj['maximum'].get<int>();
+        if (json_obj.contains("minimum")) {
+            json_obj.at("minimum").get_to(result.minimum);
+        }
+        if (json_obj.contains("maximum")) {
+            json_obj.at("maximum").get_to(result.maximum);
+        }
         return result;
     }
 };

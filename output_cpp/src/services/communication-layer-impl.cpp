@@ -11,7 +11,6 @@ public:
     void handle_metainfo_topic(const struct mosquitto_message* message)
     {
         // TODO implement your business code
-        std::cout << "handle_metainfo_topic" << std::endl;
 
         if ((char*)message->payload != NULL) {
             try {
@@ -29,7 +28,6 @@ public:
     void handle_edscorbot_commands_topic(const struct mosquitto_message* message)
     {
         // TODO implement your business code
-        std::cout << "handle_edscorbot_commands_topic" << std::endl;
 
         if ((char*)message->payload != NULL) {
             try {
@@ -47,7 +45,6 @@ public:
     void handle_edscorbot_moved_topic(const struct mosquitto_message* message)
     {
         // TODO implement your business code
-        std::cout << "handle_edscorbot_moved_topic" << std::endl;
 
         if ((char*)message->payload != NULL) {
             try {

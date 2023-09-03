@@ -19,9 +19,15 @@ struct moved_object {
         json json_obj = json::parse(json_string);
 
         moved_object result = moved_object();
-        result.client = json_obj['client'].get<asyncapi_client::client>();
-        result.error = json_obj['error'].get<bool>();
-        result.content = json_obj['content'].get<std::vector<int>>();
+        if (json_obj.contains("client")) {
+            json_obj.at("client").get_to(result.client);
+        }
+        if (json_obj.contains("error")) {
+            json_obj.at("error").get_to(result.error);
+        }
+        if (json_obj.contains("content")) {
+            json_obj.at("content").get_to(result.content);
+        }
         return result;
     }
 };

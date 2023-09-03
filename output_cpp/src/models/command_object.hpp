@@ -22,11 +22,21 @@ struct command_object {
         json json_obj = json::parse(json_string);
 
         command_object result = command_object();
-        result.signal = json_obj['signal'].get<asyncapi_client::command_signal>();
-        result.client = json_obj['client'].get<asyncapi_client::client>();
-        result.error = json_obj['error'].get<bool>();
-        result.point = json_obj['point'].get<std::vector<int>>();
-        result.trajectory = json_obj['trajectory'].get<std::vector<std::vector<int>>>();
+        if (json_obj.contains("signal")) {
+            json_obj.at("signal").get_to(result.signal);
+        }
+        if (json_obj.contains("client")) {
+            json_obj.at("client").get_to(result.client);
+        }
+        if (json_obj.contains("error")) {
+            json_obj.at("error").get_to(result.error);
+        }
+        if (json_obj.contains("point")) {
+            json_obj.at("point").get_to(result.point);
+        }
+        if (json_obj.contains("trajectory")) {
+            json_obj.at("trajectory").get_to(result.trajectory);
+        }
         return result;
     }
 };

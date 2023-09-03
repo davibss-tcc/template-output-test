@@ -20,9 +20,15 @@ struct meta_info_object {
         json json_obj = json::parse(json_string);
 
         meta_info_object result = meta_info_object();
-        result.signal = json_obj['signal'].get<asyncapi_client::meta_info_signal>();
-        result.name = json_obj['name'].get<std::string>();
-        result.joints = json_obj['joints'].get<std::vector<asyncapi_client::joint_info>>();
+        if (json_obj.contains("signal")) {
+            json_obj.at("signal").get_to(result.signal);
+        }
+        if (json_obj.contains("name")) {
+            json_obj.at("name").get_to(result.name);
+        }
+        if (json_obj.contains("joints")) {
+            json_obj.at("joints").get_to(result.joints);
+        }
         return result;
     }
 };

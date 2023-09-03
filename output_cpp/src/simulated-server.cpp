@@ -14,7 +14,7 @@
  *
  * TODO: Adjust the value to point to your mosquitto host
  **/
-#define mqtt_host "host.to.be.defined"
+#define mqtt_host "localhost"
 #define mqtt_port 1883
 
 static int run = 1;
