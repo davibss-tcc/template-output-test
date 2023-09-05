@@ -39,8 +39,15 @@ struct command_object {
         }
         return result;
     }
+
+    static std::string to_json_string(command_object command_object)
+    {
+        json json_obj = command_object;
+        return json_obj.dump();
+    }
+
+    NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(command_object, signal, client, error, point, trajectory)
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(command_object, signal, client, error, point, trajectory)
 
 }
 #endif

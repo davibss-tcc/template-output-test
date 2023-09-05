@@ -22,8 +22,15 @@ struct joint_info {
         }
         return result;
     }
+
+    static std::string to_json_string(joint_info joint_info)
+    {
+        json json_obj = joint_info;
+        return json_obj.dump();
+    }
+
+    NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(joint_info, minimum, maximum)
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(joint_info, minimum, maximum)
 
 }
 #endif

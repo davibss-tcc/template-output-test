@@ -30,8 +30,15 @@ struct moved_object {
         }
         return result;
     }
+
+    static std::string to_json_string(moved_object moved_object)
+    {
+        json json_obj = moved_object;
+        return json_obj.dump();
+    }
+
+    NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(moved_object, client, error, content)
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(moved_object, client, error, content)
 
 }
 #endif

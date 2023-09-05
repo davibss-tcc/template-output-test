@@ -19,8 +19,15 @@ struct client {
         }
         return result;
     }
+
+    static std::string to_json_string(client client)
+    {
+        json json_obj = client;
+        return json_obj.dump();
+    }
+
+    NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(client, id)
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(client, id)
 
 }
 #endif

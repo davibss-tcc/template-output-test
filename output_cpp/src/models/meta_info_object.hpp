@@ -31,8 +31,15 @@ struct meta_info_object {
         }
         return result;
     }
+
+    static std::string to_json_string(meta_info_object meta_info_object)
+    {
+        json json_obj = meta_info_object;
+        return json_obj.dump();
+    }
+
+    NLOHMANN_DEFINE_TYPE_INTRUSIVE_WITH_DEFAULT(meta_info_object, signal, name, joints)
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(meta_info_object, signal, name, joints)
 
 }
 #endif
